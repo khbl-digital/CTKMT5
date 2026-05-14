@@ -1,1 +1,938 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PNJ Promotion Dashboard - May 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* CSS Reset & Variables */
+        :root {
+            --pnj-navy: #003a7a;
+            --pnj-gold: #d4af37;
+            --pnj-pink: #fce4ec;
+            --pnj-blue-light: #e3f2fd;
+            --text-main: #334155;
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+            --border-color: #e2e8f0;
+        }
 
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-main);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--pnj-navy);
+            margin-bottom: 20px;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--bg-white);
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom: 4px solid var(--pnj-gold);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        header h1 {
+            font-size: 36px;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            color: var(--pnj-gold);
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        /* Tabs UI */
+        .tabs-nav {
+            display: flex;
+            justify-content: center;
+            margin: 40px 0;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background-color: var(--bg-white);
+            border: 2px solid var(--pnj-navy);
+            color: var(--pnj-navy);
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .tab-btn:hover {
+            background-color: var(--pnj-blue-light);
+            transform: translateY(-2px);
+        }
+
+        .tab-btn.active {
+            background-color: var(--pnj-navy);
+            color: var(--bg-white);
+            border-color: var(--pnj-navy);
+            box-shadow: 0 8px 20px rgba(0, 58, 122, 0.2);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* General Section Styling */
+        .section-box {
+            background: var(--bg-white);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            border: 1px solid var(--border-color);
+        }
+
+        .section-title {
+            font-size: 28px;
+            border-left: 5px solid var(--pnj-gold);
+            padding-left: 15px;
+            margin-bottom: 30px;
+        }
+
+        .saledeal-badge {
+            background-color: var(--pnj-pink);
+            color: #e91e63;
+            border: 1px solid #f8bbd0;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 16px;
+            display: inline-block;
+        }
+
+        .highlight {
+            color: var(--pnj-gold);
+            font-weight: 700;
+        }
+
+        /* --- TAB 1: SUMMER CAMPAIGN SPECIFICS --- */
+        /* Flow Container */
+        .flow-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .flow-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .flow-step:not(:last-child)::after {
+            content: '\f105'; /* Angle right */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            right: -15px;
+            top: 40%;
+            font-size: 24px;
+            color: var(--pnj-gold);
+            transform: translateY(-50%);
+        }
+
+        .step-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 3px solid var(--pnj-blue-light);
+        }
+
+        .flow-step h4 {
+            font-family: 'Montserrat', sans-serif;
+            color: #e91e63;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .flow-step p {
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        /* Info Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            background-color: var(--pnj-blue-light);
+            padding: 30px;
+            border-radius: 16px;
+            margin-bottom: 40px;
+        }
+
+        .info-item h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: #64748b;
+        }
+
+        .info-item p {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--pnj-navy);
+            margin: 0;
+        }
+
+        /* Cards Layout for Offers */
+        .offer-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .offer-card {
+            background: var(--bg-light);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s;
+        }
+
+        .offer-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--pnj-gold);
+        }
+
+        .offer-card h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            color: var(--pnj-navy);
+            border-bottom: 2px dashed var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .offer-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .offer-card ul li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .offer-card ul li::before {
+            content: "•";
+            color: var(--pnj-gold);
+            font-size: 20px;
+            position: absolute;
+            left: 0;
+            top: -4px;
+        }
+
+        /* --- TAB 2: AWO SPECIFICS --- */
+        .table-responsive {
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+
+        .pnj-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            background: var(--bg-white);
+        }
+
+        .pnj-table th {
+            background-color: var(--pnj-navy);
+            color: var(--bg-white);
+            padding: 15px;
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .pnj-table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 15px;
+        }
+
+        .pnj-table tbody tr:hover {
+            background-color: var(--pnj-blue-light);
+        }
+
+        .val-col {
+            font-weight: 700;
+            color: #e91e63;
+        }
+
+        /* --- NEW STYLES FOR COUPON BOXES & NEW FLOW --- */
+        .coupon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+        }
+        
+        .coupon-box {
+            background: #fff;
+            border: 2px dashed var(--pnj-gold);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            transition: transform 0.2s;
+        }
+        
+        .coupon-box:hover {
+            transform: translateY(-3px);
+            background: var(--pnj-blue-light);
+        }
+
+        .coupon-val {
+            color: #e91e63;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .coupon-desc {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--pnj-navy);
+            margin-bottom: 10px;
+            min-height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .coupon-cond {
+            font-size: 13px;
+            color: #334155;
+            border-top: 1px dashed #cbd5e1;
+            padding-top: 10px;
+            line-height: 1.4;
+        }
+
+        .new-flow-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .new-flow-step {
+            background: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .step-num {
+            background: var(--pnj-navy);
+            color: #fff;
+            font-weight: 700;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .new-flow-step img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            max-height: 180px;
+            object-fit: contain;
+        }
+
+        .new-flow-step p {
+            font-size: 14px;
+            color: var(--text-main);
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* Thêm style cho usage-steps và layout mới */
+        .usage-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .usage-step {
+            background: var(--bg-light);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+        .usage-step h4 {
+            font-size: 14px;
+            color: var(--pnj-navy);
+            margin-bottom: 10px;
+            min-height: 40px;
+        }
+        .usage-step img {
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            object-fit: cover;
+            height: 120px;
+        }
+        .participation-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        .part-step {
+            text-align: center;
+            max-width: 300px;
+        }
+        .part-step img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 16px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 15px;
+            border: 3px solid var(--pnj-blue-light);
+        }
+        .part-step h4 {
+            color: #e91e63;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        .part-arrow {
+            font-size: 30px;
+            color: var(--pnj-gold);
+        }
+        .sms-notice {
+            background-color: var(--pnj-pink);
+            color: #e91e63;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 18px;
+            text-align: center;
+            margin: 30px auto 0;
+            width: fit-content;
+            box-shadow: 0 4px 10px rgba(233, 30, 99, 0.2);
+        }
+
+        /* ========================================= */
+        /* RESPONSIVE DESIGN (MOBILE OPTIMIZATION)   */
+        /* ========================================= */
+        @media (max-width: 992px) {
+            .flow-grid, .offer-cards, .usage-steps, .new-flow-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .flow-step:nth-child(2)::after {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* 1. Typography & Header adjustments */
+            header { padding: 20px 10px; }
+            header h1 { font-size: 22px; margin-bottom: 10px;}
+            header p { font-size: 13px; }
+            .section-title { font-size: 20px; margin-bottom: 20px; padding-left: 12px; }
+            
+            /* 2. Container & Spacing adjustments */
+            .container { padding: 0 10px; }
+            .section-box { 
+                padding: 20px 12px; 
+                margin-bottom: 20px; 
+                border-radius: 12px;
+            }
+            
+            /* 3. Tabs Navigation - Side-by-side Layout on Mobile */
+            .tabs-nav { 
+                margin: 20px 0; 
+                gap: 8px; 
+                flex-wrap: nowrap; /* Force side-by-side */
+            }
+            .tab-btn { 
+                padding: 12px 5px; 
+                font-size: 13px; 
+                flex: 1; /* Distribute equal width */
+                text-align: center;
+                line-height: 1.3;
+                white-space: normal; /* Allow text to wrap nicely */
+                border-width: 1px;
+            }
+            
+            /* 4. Grids flattening */
+            .flow-grid, .offer-cards, .info-grid, .usage-steps, .new-flow-grid, .coupon-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            /* 5. Components adjustments */
+            .saledeal-badge { font-size: 14px; padding: 4px 10px; }
+            .coupon-box { padding: 15px; }
+            .coupon-val { font-size: 22px; }
+            .coupon-desc { font-size: 14px; min-height: auto; }
+            .info-grid { padding: 15px; }
+            
+            /* 6. Table adjustments to prevent horizontal scrolling strain */
+            .table-responsive {
+                border: 1px solid var(--border-color);
+                border-radius: 8px;
+                margin-top: 10px;
+            }
+            .pnj-table th, .pnj-table td { 
+                padding: 12px 10px; 
+                font-size: 13px; 
+            }
+            
+            /* 7. Image constraints */
+            .new-flow-step img, .usage-step img { max-height: 140px; }
+            .section-box > div > img[src*="1200x450"] {
+                min-height: 120px; /* Prevent main banner from becoming too thin */
+                object-fit: cover;
+            }
+            
+            /* 8. Web Engagement Inline Flex Override */
+            #tab-webeng > .section-box > div[style*="display: flex"] {
+                flex-direction: column !important;
+                gap: 15px !important;
+            }
+            #tab-webeng > .section-box > div[style*="display: flex"] > div {
+                min-width: 100% !important;
+                width: 100%;
+            }
+            
+            /* Miscellaneous spacing */
+            ul { padding-left: 15px; }
+            li { font-size: 13px; margin-bottom: 8px; }
+            p { font-size: 14px; }
+        }
+        
+        @media (max-width: 480px) {
+            /* Extra tweaks for very narrow phones */
+            .pnj-table th, .pnj-table td { font-size: 12px; padding: 8px 5px; }
+            .section-title { font-size: 18px; }
+            .new-flow-step .step-num { margin-bottom: 10px; padding: 3px 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>Thông Tin Khuyến Mãi Tháng 05.2026</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Tabs Navigation -->
+        <div class="tabs-nav">
+            <button class="tab-btn active" onclick="openTab('tab-summer')">1. SUMMER CAMPAIGN</button>
+            <button class="tab-btn" onclick="openTab('tab-awo')">2. CÁC CHƯƠNG TRÌNH KHÁC</button>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- TAB 1: SUMMER CAMPAIGN                     -->
+        <!-- ========================================== -->
+        <div id="tab-summer" class="tab-content active">
+
+            <!-- Banner Chính -->
+            <div style="margin-bottom: 30px; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                <img src="https://raw.githubusercontent.com/khbl-digital/CTKM-T5/refs/heads/main/1200x450-noscheme.jpg" alt="Lễ Hội Trang Sức Hè PNJ" style="width: 100%; display: block;">
+            </div>
+            
+            <!-- 1. Flow nhận quà -->
+            <div class="section-box">
+                <h2 class="section-title">Cách thức tham gia nhận ưu đãi</h2>
+                <div class="new-flow-grid">
+                    <div class="new-flow-step">
+                        <div class="step-num">Bước 1</div>
+                        <img src="https://raw.githubusercontent.com/khbl-digital/CTKM-T5/refs/heads/main/Qu%C3%A9t%20QR.png" alt="Quét QR">
+                        <p>Khách hàng truy cập Website/trang đích của chương trình thông qua QR tại Event/Activation, đối tác PNJ hoặc link từ các kênh truyền thông online.</p>
+                    </div>
+                    <div class="new-flow-step">
+                        <div class="step-num">Bước 2</div>
+                        <img src="https://raw.githubusercontent.com/khbl-digital/CTKM-T5/refs/heads/main/nh%E1%BA%ADp%20th%C3%B4ng%20tin.png" alt="Form điền thông tin">
+                        <p>Nhập thông tin & quay vòng xoay để nhận ưu đãi.</p>
+                    </div>
+                    <div class="new-flow-step">
+                        <div class="step-num">Bước 3</div>
+                        <img src="https://raw.githubusercontent.com/khbl-digital/CTKM-T5/refs/heads/main/V%C3%B2ng%20quay%20may%20m%E1%BA%AFn.png" alt="Vòng xoay may mắn">
+                        <p>Mã ưu đãi phát ngẫu nhiên đến khách hàng.</p>
+                    </div>
+                    <div class="new-flow-step" style="background: var(--pnj-pink); border-color: #f8bbd0; justify-content: center;">
+                        <div class="step-num" style="background: #e91e63;">Bước 4</div>
+                        <img src="https://raw.githubusercontent.com/khbl-digital/CTKM-T5/refs/heads/main/ZNS.png" alt="Gửi ZNS/SMS">
+                        <p style="font-size: 16px; font-weight: 600; color: #e91e63;">Mã ưu đãi sẽ được gửi về ZNS/SMS khách hàng trong vòng 10 phút</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Scheme Mã ưu đãi -->
+            <div class="section-box">
+                <h2 class="section-title">1. Mã Ưu Đãi</h2>
+                <p style="font-size: 24px; font-weight: 700; color: var(--pnj-navy); margin-bottom: 20px;">
+                    Saledeal: <span class="saledeal-badge" style="font-size: 22px;">70006696</span>
+                </p>
+                <div class="coupon-grid">
+                    
+                    <!-- Khách Mới - Vàng/Đồng hồ -->
+                    <div class="coupon-box">
+                        <div class="coupon-val">GIẢM 9%</div>
+                        <div class="coupon-desc">Tối đa 1.500.000Đ</div>
+                        <div class="coupon-cond"><strong>Áp dụng khách hàng mới</strong><br>Mua trang sức & đồng hồ</div>
+                    </div>
+                    <div class="coupon-box">
+                        <div class="coupon-val">GIẢM 1.8M</div>
+                        <div class="coupon-desc">Hóa đơn từ 20.000.000Đ</div>
+                        <div class="coupon-cond"><strong>Áp dụng khách hàng mới</strong><br>Mua trang sức & đồng hồ</div>
+                    </div>
+
+                    <!-- Mọi Khách Hàng - Vàng/Đồng hồ -->
+                    <div class="coupon-box">
+                        <div class="coupon-val">GIẢM 800K</div>
+                        <div class="coupon-desc">Hóa đơn từ 10.000.000Đ</div>
+                        <div class="coupon-cond">Mua trang sức & đồng hồ</div>
+                    </div>
+                    <div class="coupon-box">
+                        <div class="coupon-val">GIẢM 1.2M</div>
+                        <div class="coupon-desc">Hóa đơn từ 15.000.000Đ</div>
+                        <div class="coupon-cond">Mua trang sức & đồng hồ</div>
+                    </div>
+                    <div class="coupon-box">
+                        <div class="coupon-val">GIẢM 1.6M</div>
+                        <div class="coupon-desc">Hóa đơn từ 20.000.000Đ</div>
+                        <div class="coupon-cond">Mua trang sức & đồng hồ</div>
+                    </div>
+
+                    <!-- Ý, Dây chuyền, Bạc -->
+                    <div class="coupon-box">
+                        <div class="coupon-val">GIẢM 5%</div>
+                        <div class="coupon-desc">Tối đa 1.500.000Đ</div>
+                        <div class="coupon-cond">Áp dụng trang sức Ý, dây chuyền chất liệu Vàng/Platinum</div>
+                    </div>
+                    <div class="coupon-box">
+                        <div class="coupon-val">GIẢM 12%</div>
+                        <div class="coupon-desc">Tối đa 1.500.000Đ</div>
+                        <div class="coupon-cond">Áp dụng trang sức bạc</div>
+                    </div>
+
+                    <!-- Các nhãn hàng riêng biệt -->
+                    <div class="coupon-box">
+                        <div class="coupon-val">GIẢM 14%</div>
+                        <div class="coupon-desc">Tối đa 1.500.000Đ</div>
+                        <div class="coupon-cond">Trang sức Bạc/HKCC thuộc nhãn STYLE by PNJ</div>
+                    </div>
+                    <div class="coupon-box">
+                        <div class="coupon-val">GIẢM 10%</div>
+                        <div class="coupon-desc">Tối đa 1.500.000Đ</div>
+                        <div class="coupon-cond">Trang sức Bạc/Thau/Hợp kim cao cấp/Vàng/Platinum thuộc nhãn PNJ Hello Kitty</div>
+                    </div>
+                    <div class="coupon-box">
+                        <div class="coupon-val">GIẢM 14%</div>
+                        <div class="coupon-desc">Tối đa 1.500.000Đ</div>
+                        <div class="coupon-cond">Trang sức Bạc/HKCC thuộc nhãn Disney, Doraemon, PNJ x emoji, Grow with you, Sweeties</div>
+                    </div>
+
+                </div>
+                <p style="margin-top: 15px; font-weight: 700; color: #e91e63;">* Lưu ý: HSD đến hết 08/07/2026</p>
+            </div>
+
+            <!-- 3. Phiếu quà tặng 100k -->
+            <div class="section-box">
+                <h2 class="section-title">2. Phiếu Quà Tặng 100k</h2>
+                <div class="table-responsive">
+                    <table class="pnj-table">
+                        <thead>
+                            <tr>
+                                <th>Trị giá</th>
+                                <th>Số lượng</th>
+                                <th>Điều kiện áp dụng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="val-col" style="font-size: 20px;">100.000Đ</td>
+                                <td>200 Suất</td>
+                                <td style="font-weight: 600;">Khách hàng MỚI nhận ngẫu nhiên Phiếu Quà Tặng khi tham gia vòng xoay.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 4. Quà tặng trang sức 5M -->
+            <div class="section-box">
+                <h2 class="section-title">3. Cơ hội nhận quà tặng trang sức trị giá 5 triệu</h2>
+                <div class="table-responsive">
+                    <table class="pnj-table">
+                        <thead>
+                            <tr>
+                                <th>Giải thưởng</th>
+                                <th>Giá trị</th>
+                                <th>Số lượng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="font-weight: 600;">Quà tặng trang sức</td>
+                                <td class="val-col" style="font-size: 20px;">5.000.000Đ / phần</td>
+                                <td>04 phần</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <ul style="margin-top: 15px; padding-left: 20px; font-size: 14px; color: #64748b; line-height: 1.6;">
+                    <li>Chương trình không áp dụng cho nhân viên nội bộ</li>
+                    <li>Thông báo trúng thưởng sẽ được gửi qua ZNS hoặc SMS đến số điện thoại của khách hàng.</li>
+                </ul>
+            </div>
+
+            <!-- 5. Ưu đãi từ nhãn hàng -->
+            <div class="section-box">
+                <h2 class="section-title">4. Ưu đãi từ nhãn hàng</h2>
+
+                <!-- Hướng dẫn sử dụng code -->
+                <div class="usage-steps">
+                    <div class="usage-step">
+                        <h4>Bước 1: Chọn sản phẩm yêu thích thuộc các nhãn hàng bên dưới</h4>
+                        <img src="https://raw.githubusercontent.com/khbl-digital/CTKM-T5/refs/heads/main/B%C6%B0%E1%BB%9Bc%201%20ch%E1%BB%8Dn%20trang%20s%E1%BB%A9c%20y%C3%AAu%20th%C3%ADch.png" alt="Danh sách sản phẩm">
+                    </div>
+                    <div class="usage-step">
+                        <h4>Bước 2: Nhấn vào "Mua ngay" để tiến hành đặt hàng</h4>
+                        <img src="https://raw.githubusercontent.com/khbl-digital/CTKM-T5/refs/heads/main/B%C6%B0%E1%BB%9Bc%202%20mua%20ngay.png" alt="Nút Mua ngay">
+                    </div>
+                    <div class="usage-step">
+                        <h4>Bước 3: Nhập đầy đủ thông tin đặt hàng</h4>
+                        <img src="https://raw.githubusercontent.com/khbl-digital/CTKM-T5/refs/heads/main/B%C6%B0%E1%BB%9Bc%203%20nh%E1%BA%ADp%20th%C3%B4ng%20tin.png" alt="Form điền thông tin">
+                    </div>
+                    <div class="usage-step">
+                        <h4>Bước 4: Tại mục "Khuyến mãi từ PNJ", nhập mã ưu đãi hiển thị tại trang sản phẩm</h4>
+                        <img src="https://raw.githubusercontent.com/khbl-digital/CTKM-T5/refs/heads/main/B%C6%B0%E1%BB%9Bc%204%20nh%E1%BA%ADp%20m%C3%A3.png" alt="Nhập mã ưu đãi">
+                    </div>
+                </div>
+
+                <!-- Bảng Nhãn hàng -->
+                <div class="table-responsive">
+                    <table class="pnj-table">
+                        <thead>
+                            <tr>
+                                <th>Nhãn hàng</th>
+                                <th>Chất liệu/Dòng hàng</th>
+                                <th>Mã ưu đãi</th>
+                                <th>Điều kiện áp dụng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="font-weight: 600;">STYLE by PNJ</td>
+                                <td>Bạc/Thau/Hợp kim cao cấp</td>
+                                <td class="val-col">14% tối đa 1.500.000Đ</td>
+                                <td>Áp dụng cho khách hàng mới & cũ</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: 600;">PNJ Hello Kitty</td>
+                                <td>Bạc/Thau/Hợp kim cao cấp/Vàng/Platinum</td>
+                                <td class="val-col">10% tối đa 1.500.000Đ</td>
+                                <td>
+                                    • Áp dụng cho khách hàng mới & cũ<br>
+                                    • KHÔNG áp dụng cho: Trang sức Ý, trang sức dây chuyền và trang sức không gắn đá thuộc chất liệu Vàng/Platinum...
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: 600;">Disney | PNJ, Doraemon | PNJ, PNJ x emoji, Grow with you, Sweeties</td>
+                                <td>Bạc/Thau/Hợp kim cao cấp</td>
+                                <td class="val-col">14% tối đa 1.500.000Đ</td>
+                                <td>Áp dụng cho khách hàng mới & cũ</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p style="margin-top: 20px; font-weight: 700; color: #e91e63;">* Lưu ý: HSD: 08/07/2026</p>
+            </div>
+
+        </div>
+
+        <!-- ========================================== -->
+        <!-- TAB 2: CÁC CHƯƠNG TRÌNH KHÁC (GOM CHUNG)   -->
+        <!-- ========================================== -->
+        <div id="tab-awo" class="tab-content">
+            
+            <!-- Tab Sale -->
+            <div class="section-box">
+                <h2 class="section-title">I. Tab Sale Exclusive - Hàng Có Sẵn</h2>
+                <p style="margin-bottom: 20px; font-size: 18px; font-weight: 600;">Saledeal 20: <span class="saledeal-badge">70006693</span> | Thời gian: 01/05 - 31/05/2026</p>
+                <div class="info-grid" style="grid-template-columns: 1fr 1fr; background: var(--bg-light);">
+                    <div class="info-item">
+                        <h4>Trang sức Vàng</h4>
+                        <p style="color: #e91e63;">Ưu đãi đến 35%</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Trang sức Bạc</h4>
+                        <p style="color: #e91e63;">Ưu đãi đến 50%</p>
+                    </div>
+                </div>
+                <p style="margin-top: 15px; font-size: 14px; color: #64748b;">* Chỉ áp dụng cho việc chọn hàng có sẵn trên Website PNJ theo danh sách mã quy định. Không áp dụng đặt hàng lại. Không áp dụng đồng thời với bất kì ưu đãi nào khác (bao gồm chính sách thẻ VIP, VIP pass, giảm giá, quà tặng, code ưu đãi…). Ngoại trừ các ưu đãi tặng mã/ phiếu ưu đãi (sử dụng cho hóa đơn sau) từ CT Hệ thống.</p>
+            </div>
+
+            <!-- Livestream -->
+            <div class="section-box">
+                <h2 class="section-title">II. Ưu Đãi Livestream</h2>
+                <p style="margin-bottom: 20px; font-size: 18px; font-weight: 600;">Saledeal 20: <span class="saledeal-badge">70006705</span> | Thời gian: 01/05 - 30/06/2026</p>
+                <div class="coupon-grid">
+                    <div class="coupon-box">
+                        <div class="coupon-val">GIẢM 12%</div>
+                        <div class="coupon-desc">Tối đa 1.500.000Đ</div>
+                        <div class="coupon-cond">Bạc/Hợp kim cao cấp<br>(Áp dụng HĐ từ 700K)</div>
+                    </div>
+                    <div class="coupon-box">
+                        <div class="coupon-val">GIẢM 8%</div>
+                        <div class="coupon-desc">Tối đa 1.500.000Đ</div>
+                        <div class="coupon-cond">Bạc/Hợp kim cao cấp<br>(Không yêu cầu HĐ tối thiểu)</div>
+                    </div>
+                    <div class="coupon-box">
+                        <div class="coupon-val">GIẢM 9%</div>
+                        <div class="coupon-desc">Tối đa 1.500.000Đ</div>
+                        <div class="coupon-cond">Vàng/Platinum/Bạc/Đồng hồ<br>(Chỉ áp dụng Khách Hàng Mới)</div>
+                    </div>
+                </div>
+                
+                <!-- Bảng quà tặng Livestream -->
+                <div class="table-responsive" style="margin-top: 20px;">
+                    <table class="pnj-table">
+                        <thead>
+                            <tr>
+                                <th>Quà tặng kèm</th>
+                                <th>Điều kiện hóa đơn</th>
+                                <th>Lưu ý</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="font-weight: 600; color: #e91e63;">Tặng Pin thời trang</td>
+                                <td class="val-col">Từ 1.500.000Đ</td>
+                                <td>Bắt buộc ghi chú nguồn đơn Livestream trên mPOS.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+            <!-- Web Engagement -->
+            <div class="section-box">
+                <h2 class="section-title">III. Web-Engagement (Dành cho KH Mới)</h2>
+                <p style="margin-bottom: 20px; font-size: 18px; font-weight: 600;">Saledeal 20: <span class="saledeal-badge">70006697</span> | Thời gian: 15/04 - 30/06/2026</p>
+                <div style="display: flex; gap: 30px; align-items: center; flex-wrap: wrap;">
+                    <div class="coupon-box" style="flex: 1; min-width: 250px;">
+                        <div class="coupon-val">GIẢM 9%</div>
+                        <div class="coupon-desc">Tối đa 1.500.000Đ</div>
+                        <div class="coupon-cond">Chỉ áp dụng cho Khách Hàng Mới<br>Vàng/Platinum/Bạc/Hợp kim/Đồng hồ</div>
+                    </div>
+                    <div style="flex: 2; min-width: 300px;">
+                        <ul style="padding-left: 20px; line-height: 1.8;">
+                            <li><strong>Cách nhận:</strong> KH bấm "NHẬN QUÀ NGAY" trên banner trang chủ, nhập SĐT. Mã gửi qua SMS/ZNS trong 10 phút.</li>
+                            <li><strong>Hạn sử dụng:</strong> 15 ngày kể từ ngày nhận mã.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exit Intent -->
+            <div class="section-box">
+                <h2 class="section-title">IV. Exit Intent (Pop-up giữ chân khách hàng rời trang)</h2>
+                <p style="margin-bottom: 20px; font-size: 18px; font-weight: 600;">Thời gian: 01/05 - 20/05/2026</p>
+                <div class="coupon-grid">
+                    <div class="coupon-box">
+                        <div class="coupon-val">GIẢM 8%</div>
+                        <div class="coupon-desc">Tối đa 1.500.000Đ</div>
+                        <div class="coupon-cond"><strong>Khách Hàng Cũ</strong><br>Saledeal: 70006699</div>
+                    </div>
+                    <div class="coupon-box">
+                        <div class="coupon-val">GIẢM 9%</div>
+                        <div class="coupon-desc">Tối đa 1.500.000Đ</div>
+                        <div class="coupon-cond"><strong>Khách Hàng Mới</strong><br>Saledeal: 70006698</div>
+                    </div>
+                </div>
+                <p style="margin-top: 15px; font-size: 14px; color: #64748b;">* Hệ thống tự động tặng mã khi KH định rời trang mà chưa chọn sản phẩm. Thời gian sử dụng ưu đãi sau 60 phút kể từ lúc nhận tin nhắn. Hạn dùng 30 ngày.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Script for Tabs -->
+    <script>
+        function openTab(tabId) {
+            // Hide all tab content
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Remove active class from all buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            // Show selected tab and highlight button
+            document.getElementById(tabId).classList.add('active');
+            // Fixed the active class application logic to target the clicked button specifically
+            const activeBtn = Array.from(buttons).find(btn => btn.getAttribute('onclick').includes(tabId));
+            if(activeBtn) activeBtn.classList.add('active');
+        }
+    </script>
+</body>
+</html>
