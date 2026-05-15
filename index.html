@@ -352,6 +352,31 @@
             color: #64748b;
         }
 
+        /* Reference Link Styling */
+        .reference-link-box {
+            background-color: var(--pnj-blue-light);
+            border-left: 4px solid var(--pnj-navy);
+            padding: 15px 20px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+        .reference-link-box a {
+            color: var(--pnj-navy);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.2s;
+            word-break: break-word;
+        }
+        .reference-link-box a:hover {
+            color: var(--pnj-gold);
+            text-decoration: underline;
+        }
+
         /* ========================================= */
         /* RESPONSIVE DESIGN (MOBILE OPTIMIZATION)   */
         /* ========================================= */
@@ -457,14 +482,15 @@
         }
         
         @media (max-width: 480px) {
-            .tab-btn { font-size: 11px; padding: 8px 4px; }
-            .pnj-table th, .pnj-table td { font-size: 11px; padding: 8px 5px; }
+            .pnj-table th, .pnj-table td { font-size: 12px; padding: 8px 5px; }
             .section-title { font-size: 18px; margin-bottom: 15px; }
             .new-flow-step .step-num { margin-bottom: 10px; padding: 3px 10px; }
             .info-header .code-line { font-size: 16px; }
             .info-header .date-line { font-size: 14px; }
             .coupon-val { font-size: 18px; }
             .coupon-cond { font-size: 11px; }
+            .reference-link-box { padding: 12px 15px; }
+            .reference-link-box a { font-size: 13px; }
         }
     </style>
 </head>
@@ -701,6 +727,7 @@
             <div class="section-box">
                 <h2 class="section-title">5. Hoạt Động Nuôi Dưỡng & Thúc Đẩy Khách Hàng Mới</h2>
                 
+                <!-- NEW STACKED INFO HEADER -->
                 <div class="info-header" style="border-bottom: none; padding-bottom: 0;">
                     <div class="code-line">Saledeal: <span class="saledeal-badge">70006696</span></div>
                 </div>
@@ -727,6 +754,13 @@
                 </div>
                 
                 <p style="margin-top: 15px; font-weight: 700; color: #e91e63;">* HSD: trong vòng 48h kể từ khi nhận ưu đãi</p>
+            </div>
+
+            <!-- REFERENCE LINK TAB 1 -->
+            <div class="reference-link-box">
+                <a href="https://eoffice.pnj.com.vn/dms/SitePages/view-file.aspx?IID=11344&listid=17ad0760-f555-4c24-97fc-0d8b77deb923&idf=&source=https://eoffice.pnj.com.vn/dms&IsDlg=1" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-solid fa-link"></i> *Chi tiết xem thêm tại Thông báo CTKM SUMMER Online 2026
+                </a>
             </div>
 
         </div>
@@ -856,6 +890,13 @@
                     </div>
                 </div>
                 <p style="margin-top: 15px; font-size: 14px; color: #64748b;">* Hệ thống tự động tặng mã khi KH định rời trang mà chưa chọn sản phẩm. Thời gian sử dụng ưu đãi sau 60 phút kể từ lúc nhận tin nhắn. Hạn dùng 30 ngày.</p>
+            </div>
+
+            <!-- REFERENCE LINK TAB 2 -->
+            <div class="reference-link-box">
+                <a href="https://eoffice.pnj.com.vn/dms/TempLibrary/Forms/EditFormVBPQ.aspx?IID=11343&listid=17ad0760-f555-4c24-97fc-0d8b77deb923&Source=%2fdms&InitialTabId=Ribbon.Read" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-solid fa-link"></i> *Chi tiết xem thêm tại Thông báo CTKM Online tháng 05.2026
+                </a>
             </div>
 
         </div>
